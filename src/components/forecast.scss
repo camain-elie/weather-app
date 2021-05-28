@@ -3,7 +3,6 @@
 .forecast{
     margin: 10px;
     padding: 5px;
-    max-width: 450px;
     color: $font-color;
     background: $primary-color;
     display: flex;
@@ -25,3 +24,8 @@
     }
 }
 
+@media (min-width: 1000px){
+    .forecast{
+        display: inline-block;
+    }
+}

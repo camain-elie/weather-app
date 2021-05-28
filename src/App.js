@@ -70,8 +70,9 @@ class App extends Component {
             <Forecast metric={state.metric} date={5} high={20} low={12} abbr='s' />
           </div>
 
+          <h2>Today's highlights</h2>
           <div className="highlights">
-            <h2>Today's highlights</h2>
+            
 
             <Highlight title="Wind status" value={7} metric={state.metric}
             unit={state.metric ? 'km/h' : 'mph'} element={<Wind direction="WSW" />} />
