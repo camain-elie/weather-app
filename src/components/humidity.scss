@@ -1,0 +1,65 @@
+@import './colors.scss';
+
+.humidity{
+    padding: 15px;
+    max-width: 400px;
+    max-height: 200px;
+    background: $primary-color;
+    text-align: center;
+    margin: 10px;
+
+    color: $font-color;
+
+    *{
+        margin: 0;
+    }
+
+    h3{
+        font-weight: 500;
+    }
+
+    &__value{
+        font-size: 5rem;
+        &-thin{
+            font-size: 4rem;
+        }
+        margin: 20px;
+    }
+
+    &__visual{
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 75%;
+        color: $secondary-font-color;
+    }
+
+    &__scale{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    &__whole{
+        padding: 0;
+        width: 100%;
+        height: 12px;
+        border-radius: 6px;
+        background: $font-color;
+        overflow: hidden;
+    }
+
+    &__progress{
+        height: 100%;
+        width: 50px;
+        background: #FFEC65;
+    }
+
+    &__unit{
+        text-align: right;
+        margin: 0;
+    }
+}

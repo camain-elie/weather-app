@@ -1,0 +1,27 @@
+@import './colors.scss';
+
+.forecast{
+    margin: 10px;
+    padding: 5px;
+    max-width: 450px;
+    color: $font-color;
+    background: $primary-color;
+    display: flex;
+    justify-content: space-around;
+
+    .weather-icon img{
+        width: 50px;
+    }
+
+    &__temp{
+        p{
+            display: inline-block;
+        }
+    }
+
+    &__low{
+        color: $secondary-font-color;
+        margin-left: 10px;
+    }
+}
+
