@@ -5,6 +5,7 @@ import Highlight from './components/highlight';
 import Wind from './components/wind';
 import WeatherIcon from './components/weatherIcon';
 import { Forecast, toRetardUnit } from './components/forecast';
+import SearchPanel from './components/searchPanel';
 
 import './App.scss';
 
@@ -17,6 +18,14 @@ const getUserWoeid = async (latt, long) => {
 const getWheatherDatas = async (location) => {
   const response = await fetch(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/${location}`)
   const jsonData = await response.json();
+  console.log(jsonData);
+  return jsonData;
+}
+
+const getLocationList = async (location) => {
+  const response = await fetch(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/search/?query=${location}`);
+  const jsonData = await response.json();
+  console.log(jsonData);
   return jsonData;
 }
 
@@ -25,13 +34,16 @@ class App extends Component {
     super(props);
 
     this.handlePositionClick = this.handlePositionClick.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleLocationClick = this.handleLocationClick.bind(this);
+    this.switchSearchPanel = this.switchSearchPanel.bind(this);
 
     this.state={
-      location: 'Orléans',
+      location: '',
       metric: true,
       isLoading: true,
       userMessage: '',
-
+      searchPanel: false,
     };
   }
 
@@ -46,12 +58,19 @@ class App extends Component {
       location: data.title,
       today: data.consolidated_weather[0],
       isLoading: false,
+      locationList: [],
+      pageIsLoaded: false,
     })
   }
 
   handlePositionClick(){
-    console.log('position click');
     this.useUserPosition();
+  }
+
+  handleLocationClick(woeid){
+    getWheatherDatas(woeid)
+      .then(data => this.setData(data));
+    this.switchSearchPanel();
   }
 
   useUserPosition () {
@@ -64,16 +83,18 @@ class App extends Component {
       (error) => this.setState({ userMessage: error.message }));
   }
 
-  handleSearchForPlacesClick(){
+  switchSearchPanel(){
+    this.setState({ searchPanel: !this.state.searchPanel, pageIsLoaded: true });
+  }
 
+  handleSearch(e){
+    e.preventDefault();
+    getLocationList(e.target[0].value)
+      .then(res => this.setState({ locationList: res}));
   }
 
   componentDidMount(){
     this.useUserPosition();
-    /*getUserWhoid(28,238)
-    .then(res => console.log(res))
-    getWheatherDatas(9807)
-    .then(res => console.log(res))*/
   }
 
   render(){
@@ -82,10 +103,15 @@ class App extends Component {
 
     return(
       !state.isLoading &&
-      <div className="app">
+      <div className="app" >
         <div className="today">
+
+          <SearchPanel initial={state.pageIsLoaded} handleClose={() => this.switchSearchPanel()} isActive={state.searchPanel} locationList={state.locationList}
+            handleSearch={event => this.handleSearch(event)}
+            handleLocationClick={this.handleLocationClick} />
+
           <div className="today__buttons">
-            <p className="today__search">
+            <p className="today__search" onClick={() => this.switchSearchPanel()}>
               Search for places
             </p>
             <div className="today__position"
