@@ -26,6 +26,6 @@
 
 @media (min-width: 1000px){
     .forecast{
-        display: inline-block;
+        flex-direction: column;
     }
 }

@@ -2,7 +2,7 @@
 
 .humidity{
     padding: 15px;
-    max-width: 400px;
+    //max-width: 400px;
     max-height: 200px;
     background: $primary-color;
     text-align: center;
@@ -61,5 +61,17 @@
     &__unit{
         text-align: right;
         margin: 0;
+    }
+}
+
+@media (min-width: 700px) {
+    .humidity{
+        width: 42%;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    .humidity{
+        width: 90%;
     }
 }
