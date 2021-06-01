@@ -26,7 +26,6 @@ export function toRetardUnit (celsius) {
 
 export function Forecast (props) {
 
-
     return(
         <div className="forecast">
             <p className="forecast__date">{weekDates[props.date]}</p>

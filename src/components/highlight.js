@@ -10,13 +10,13 @@ function roundToDecimal(num){
 
 function Highlight (props) {
 
-    let value = props.value
+    let value = props.value;
 
     if(props.metric){
         value = toKilometer(value);
     }
 
-    value = roundToDecimal(value)
+    value = roundToDecimal(value);
 
     return(
         <div className="highlight">

@@ -16,16 +16,14 @@ const getUserWoeid = async (latt, long) => {
 }
 
 const getWheatherDatas = async (location) => {
-  const response = await fetch(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/${location}`)
+  const response = await fetch(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/${location}`);
   const jsonData = await response.json();
-  console.log(jsonData);
   return jsonData;
 }
 
 const getLocationList = async (location) => {
   const response = await fetch(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/search/?query=${location}`);
   const jsonData = await response.json();
-  console.log(jsonData);
   return jsonData;
 }
 
@@ -52,7 +50,6 @@ class App extends Component {
   }
 
   setData(data){
-    console.log(data);
     this.setState({
       weatherData: data.consolidated_weather,
       location: data.title,
@@ -60,7 +57,7 @@ class App extends Component {
       isLoading: false,
       locationList: [],
       pageIsLoaded: false,
-    })
+    });
   }
 
   handlePositionClick(){

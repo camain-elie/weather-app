@@ -14,7 +14,6 @@ body{
   background: $background-color;
 }
 
-
 .today{
   display: flex;
   flex-direction: column;
@@ -27,7 +26,6 @@ body{
     padding: 0 25px;
     display: flex;
     justify-content: space-between;
-
   }
 
   &__search{
@@ -59,7 +57,6 @@ body{
      position: relative;
 
     :nth-child(2){
-
       opacity: 0.1;
       background-image: url("./assets/Cloud-background.png");
       background-size: cover;
@@ -109,10 +106,12 @@ body{
       top: 8px;
     }
   }
+
   .active{
     background: $font-color;
     color: $background-color;
     pointer-events: none;
+
     &:hover{
       background: darken($font-color, 7%);
     }
@@ -159,7 +158,6 @@ body{
     max-width: 1200px;
     width: 75%;
     margin: auto;
-    //padding-left: 25%;
     height: 100vh;
     float: right;
     right: 0;
@@ -182,10 +180,6 @@ body{
     }
   }
 }
-
-
-
-
 
 @media (min-width: 700px) {
   .highlights{

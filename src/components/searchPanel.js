@@ -7,17 +7,16 @@ class SearchPanel extends Component{
         super(props);
 
         let locationList = props.locationList;
-        console.log(locationList)
+
         if (!locationList){
             locationList = [];
-            console.log(locationList)
         }
 
         this.state={
             inputText: '',
             locationList: locationList,
             pageIsLoaded: false,
-        }
+        };
     }
 
     render(){
