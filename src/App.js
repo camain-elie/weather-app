@@ -71,13 +71,28 @@ class App extends Component {
   }
 
   useUserPosition () {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        getUserWoeid(position.coords.latitude, position.coords.longitude)
-          .then(woeid => getWheatherDatas(woeid[0].woeid)
-            .then(data => this.setData(data)))
+
+
+
+    try{
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          getUserWoeid(position.coords.latitude, position.coords.longitude)
+            .then(woeid => getWheatherDatas(woeid[0].woeid)
+              .then(data => this.setData(data)));
       },
-      (error) => this.setState({ userMessage: error.message }));
+      (error) => {
+        console.log(error);
+        getUserWoeid(47, 2)
+            .then(woeid => getWheatherDatas(woeid[0].woeid)
+              .then(data => this.setData(data)));
+      });
+    } catch (error){
+      console.log(error);
+      getUserWoeid(47, 2)
+            .then(woeid => getWheatherDatas(woeid[0].woeid)
+              .then(data => this.setData(data)))
+    }
   }
 
   switchSearchPanel(){
