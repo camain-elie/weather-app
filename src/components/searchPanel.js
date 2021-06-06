@@ -36,7 +36,7 @@ class SearchPanel extends Component{
                     </div>
 
                     <div className="search-panel__location-list">
-                        {this.props.locationList.map((item, index) => {
+                        {this.state.locationList.map((item, index) => {
                             return(
                                 <div className="search-panel__location" key={index} onClick={() => this.props.handleLocationClick(item.woeid)}>
                                     <p>{item.title}</p>
